@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Oswald:wght@500;700&display=swap");
+
+:root {
+    --color-zzz-green: #ccff00;
+    --color-zzz-orange: #ff4d00;
+    --color-zzz-dark: #0a0a0a;
+    --color-zzz-grey: #242424;
+    
+    --font-display: "Oswald", sans-serif;
+    --font-sans: "Chakra Petch", sans-serif;
+}
+
+body {
+    background-color: var(--color-zzz-dark);
+    font-family: var(--font-sans);
+    color: white;
+    background-image: radial-gradient(var(--color-zzz-grey) 1px, transparent 1px),
+                      radial-gradient(var(--color-zzz-grey) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    min-width: 280px;
+}
+
+.font-display {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+
+.crt-overlay {
+    position: fixed; 
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+}
+
+.crt-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0) 50%,
+            rgba(0, 0, 0, 0.25) 50%,
+            rgba(0, 0, 0, 0.25) 100%);
+    background-size: 100% 2.6px;
+    mix-blend-mode: multiply;
+    animation: crt-flicker 6s infinite;
+}
+
+
+@media (min-width: 768px) {
+
+    .crt-overlay::before {
+        background-size: 100% 4.2px;
+    }
+}
+
+@keyframes crt-flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.96; }
+}
+
+.hazard-stripes {
+    background: repeating-linear-gradient(45deg,
+            var(--color-zzz-dark),
+            var(--color-zzz-dark) 10px,
+            #333 10px,
+            #333 20px);
+}
+
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
